@@ -40,62 +40,74 @@ button {
     max-width: 400px;
 }
 
-
-
-
-/* Desktop get started screen */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+/* Font for p tags */
+p {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
 }
 
-.image-section img {
-    width: 150px;
-    margin-bottom: 20px;
-}
-
-.form-section {
-    background-color: #d3d3d3;
-    padding: 2rem;
-    border-radius: 10px;
-    width: 100%;
-    max-width: 400px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-input {
-    padding: 10px;
-    border: none;
-    border-radius: 20px;
-}
-
-.form-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-}
-
-/* Media query for Desktop */
+/* When on a desktop screen, display a different style of login form */
 @media (min-width: 768px) {
-    .container {
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-    }
-    .image-section img {
-        width: 200px;
-        margin-bottom: 0;
-    }
     .mobile-form {
+        display: none;
+    }
+
+    /* Input styling  to have a rounded edge */
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+    }
+
+    .desktop-form {
+        display: block;
         width: 400px;
+        margin: 0 auto;
+    }
+
+    /* Resize image */
+    .desktop-image { 
+        width: 100%;
+        height: auto;
+        max-width: 200px;
+        margin-bottom: 20px;
+
+        position: relative;
+        bottom: 20px;
+        left: 110px;
+    
+        /* Rounded edges */
+        border-radius: 20px;
+        
+    }
+
+    .sign-up-btn, .sign-in-btn {
+        width: 105%;
+        /* Move button down  */
+        position: relative;
+        top: 20px;
+
+        
+    }
+
+    .sign-up-btn:hover, .sign-in-btn:hover {
+        background-color: #bbb;
+        cursor: pointer;
+        /* Button pop effect */
+        transform: scale(1.05);
+        transition: transform 0.2s ease;
+    }
+
+}
+
+/* Desktop form should dissapear when viewing on mobile */
+@media (max-width: 768px) {
+    .desktop-form {
+        display: none;
     }
 }

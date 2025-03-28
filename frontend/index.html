@@ -7,22 +7,29 @@
     <title>Get started!</title>
 </head>
 <body>
-    <!-- Desktop form -->
-     <div class="container">
-        <div class="image-section">
-            <img src="/frontend/assets/desktop-login-matcha.jpg" alt="login-image">
-        </div>
-        <div class="form-section">
-            <h1>Get Started!</h1>
-            <div class="button-group">
-                <a href="sign-in.html">
-                    <button class="btn">Sign in</button>
-                </a>
-                <a href="sign-up.html">
-                    <button class="btn">Sign up</button>
-                </a>
-            </div>
-     </div>
+   <!-- Desktop form -->
+    <div class="desktop-form">
+        <img src="/frontend/assets/desktop-login-matcha.jpg" alt ="Matcha" class="desktop-image">
+        <!-- Login form -->
+         <div class="form-container">
+            <form>
+                <!-- Display two inputs to enter username and password -->
+                 <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" autocomplete="username" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete= "current-password" required>
+                 </div>
+                 <a href="sign-in.html">
+                    <button class="sign-in-btn">Sign in</button>
+                 <a href="sign-up.html">
+                    <button class="sign-up-btn">Sign up</button>
+                    </a>
+                </div>
+            </form>
+         </div>
+    </div>
 
     <!-- Mobile form -->
     <div class="mobile-form">

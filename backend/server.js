@@ -1,17 +1,20 @@
 // init server
 const express = require('express');
 const app = express();
+
+//  use express.json() middleware to parse JSON request bodies
 app.use(express.json());
 
-// Basic get request to test server
-app.get('/', (req, res) =>{
-    res.send('Server is ready!');
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+    console.log('Server is running on port 3000');
 })
 
-// Listen to port
-app.listen(3000, () => {
-    console.log('Server at http://localhost:3000');
-})
-
-// port number
+// start server on port 3000
 const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log('Press Ctrl+C to stop the server');
+});
+
