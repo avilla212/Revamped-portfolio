@@ -19,8 +19,17 @@ router.post('/', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
+        // Salt rounds for hashing
+        const saltRounds = 10;
+        // Hash the password using bcryptjs
+        const hashedPassword = await bcryptjs.hash(password, saltRounds);
+
+        // Store the hashed password in the database (this is just for demonstration, normally you would not hash the password again)
+        user.password = hashedPassword;
+
         // Check if the password is correct
         const isMatch = await bcryptjs.compare(password, user.password);
+        
         // If password is incorrect, return 401 Unauthorized
         if (!isMatch) {
             console.log('Password is incorrect');
