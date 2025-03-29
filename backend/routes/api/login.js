@@ -26,7 +26,17 @@ router.post('/', async (req, res) => {
             console.log('Password is incorrect');
             return res.status(401).json({ message: 'Invalid credentials' });
         }
-
+        
+        // If username and password are correct, return success message
+        console.log('Login successful');
+        return res.status(200).json({ message: 'Login successful' });
+    } catch (err){
+        console.log(`Error: ${err.message}`);
+        // If there is an error, return 500 Internal Server Error
+        return res.status(500).json({ message: 'Server error' });
     }
+});
 
-})
+module.exports = router; // Export the router so it can be used in other files
+// This allows us to use this router in our main server file (server.js) by importing it and mounting it on a specific path.
+// This way, we can keep our routes organized and modular.
