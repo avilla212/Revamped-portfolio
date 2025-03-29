@@ -2,6 +2,11 @@
 const express = require('express');
 const app = express();
 
+// init mongoose
+const connectDb = require('./database/db');
+const { connect } = require('mongoose');
+connectDb();
+
 //  use express.json() middleware to parse JSON request bodies
 app.use(express.json());
 
