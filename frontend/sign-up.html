@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="styles/sign-up.css">
+    <title>Sign Up</title>
 </head>
 <body>
-    <h1>Sign up</h1>
+    <!-- Desktop sign up form -->
+    <div class="desktop-signup-form ">
+        <h1>Create your account!</h1>
+        <div class="form-container">
+            <form id="signup-form">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" autocomplete="username" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" autocomplete="new-password" required>
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required>
+
+                    <button type="submit" class="sign-up-btn">Sign up</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+<script src="scripts/sign-up.js"> </script>
 </body>
+
 </html>

@@ -12,7 +12,8 @@
 </welcome-message>
 <div class="sign-in-container">
     <h1> Welcome back!</h1>
-    <form action="/backend/routes/api/login" method="POST">
+    <!-- Sign In, use id so js can hook into it -->
+    <form action="/backend/routes/api/login" id="signin-form" method="POST">
         <div class="input-group">
             <label for="username">Username/Email</label>
             <input class="sign-in-username" type="text" id="username" name="username" autocomplete="username" required>
@@ -27,4 +28,5 @@
     </div>
 </div>
 </body>
+<script src="scripts/sign-in.js"></script>
 </html>

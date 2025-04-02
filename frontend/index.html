@@ -9,7 +9,7 @@
 <body>
    <!-- Desktop form -->
     <div class="desktop-form">
-        <img src="/frontend/assets/desktop-login-matcha.jpg" alt ="Matcha" class="desktop-image">
+        <img src="/assets/desktop-login-matcha.jpg" alt ="Matcha" class="desktop-image">
         <!-- Login form -->
          <div class="form-container">
             <form action="/backend/routes/api/login.json" method="POST">
@@ -45,6 +45,8 @@
             </a>
         </div>
     </div>
+    <!-- Script just inside the body ensures the DOM is fully loaded 
+        before executing the script --> 
+    <script src="scripts/index.js"></script>
 </body>
-<script src="scripts/index.js"></script>
 </html>
