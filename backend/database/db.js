@@ -9,6 +9,8 @@ const connectDb = async () => {
             // use unified topology is to use the new topology engine
         });
         console.log('MongoDB connected');
+
+        
     } catch(err){
         console.error(err.message);
         // Exit process with failure

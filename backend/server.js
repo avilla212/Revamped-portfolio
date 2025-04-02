@@ -9,12 +9,18 @@ const { connect } = require('mongoose');
 connectDb();
 
 //  use express.json() middleware to parse JSON request bodies
-app.use(express.static(path.join(__dirname, '../frontend')));
+// this ensures that any static files in the frontend are accessible via our public route
+// basically, we are saying that everything within our frontend folder should be accessible from the root URL '/'
+app.use(express.static(path.join(__dirname, '../frontend'))); 
 app.use(express.json());
 
 // Mount login route
 // Mounting means attaching a route handler to a specific path in the Express application
+//  This attaches the login.js route to the /api/login, so when we fetch, it will hit our login.js route
 app.use('/api/login', require('./routes/api/login'));
+
+// Mount signup route
+app.use('/api/signup', require('./routes/api/signup'));
 
 
 
