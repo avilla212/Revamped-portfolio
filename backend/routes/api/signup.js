@@ -1,6 +1,7 @@
 const express = require('express'); // Import express to create a router
 const router = express.Router(); // Create a new router object
 const bcryptjs = require('bcryptjs'); // Import bcryptjs for password hashing and comparison
+const jwt = require('jsonwebtoken'); // Import jsonwebtoken for creating JWTstr
 const User = require('../../models/user'); // Import the User model to interact with the database
 
 // POST /api/signup
@@ -18,6 +19,8 @@ router.post('/', async (req, res) => {
             console.log('Password is required');
             return res.status(400).json({message: 'Password is required'});
         }
+
+        // create jwt 
 
         // Hash the password using bcryptjs before storing it
         const saltRounds = 10; // Salt rounds for hashing
@@ -39,8 +42,13 @@ router.post('/', async (req, res) => {
         res.status(201).json({message: 'User created successfully'}); // Return success message
 
 
-
     } catch(error){
+        // Duplicate username error handling
+        if (error.code === 11000){
+            console.log('Username already exists');
+            return res.status(400).json({message: 'Username already exists'});
+        }
+
         console.error(`Error: ${error.message}`);
         return res.status(500).json({message: 'Server error'});
     }
