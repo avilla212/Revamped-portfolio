@@ -4,29 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles/sign-in.css">
 </head>
 <body>
-<welcome-message>
-    
-</welcome-message>
-<div class="sign-in-container">
-    <h1> Welcome back!</h1>
-    <!-- Sign In, use id so js can hook into it -->
-    <form action="/backend/routes/api/login" id="signin-form" method="POST">
-        <div class="input-group">
-            <label for="username">Username/Email</label>
-            <input class="sign-in-username" type="text" id="username" name="username" autocomplete="username" required>
-
-            <label for="password">Password</label>
-            <input class="sign-in-password" type="password" id="password" name="password" autocomplete= "current-password" required>
-        </div>
-    </form>
-    <!-- Forgot password? -->
-    <div class="forgot-password">
-        <a href="/forgot-password">Forgot password?</a>
-    </div>
-</div>
+    <h1>Sign In!</h1>
 </body>
-<script src="scripts/sign-in.js"></script>
 </html>
