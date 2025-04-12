@@ -1,7 +1,6 @@
 const express = require('express'); // Import express to create a router
 const router = express.Router(); // Create a new router object
 const bcryptjs = require('bcryptjs'); // Import bcryptjs for password hashing and comparison
-const jwt = require('jsonwebtoken'); // Import jsonwebtoken for creating JWTstr
 const User = require('../../models/user'); // Import the User model to interact with the database
 
 // POST /api/signup
@@ -20,7 +19,33 @@ router.post('/', async (req, res) => {
             return res.status(400).json({message: 'Password is required'});
         }
 
-        // create jwt 
+        // Validate the username and password once again
+        const usernameRegex = /^[a-zA-Z0-9]{3,20}$/; // Username must be 3-20 characters long and can only contain letters and numbers
+
+        const hasSpaces = /\s/
+
+        if (hasSpaces.test(username)) {
+            console.log('Username cannot contain spaces');
+            return res.status(400).json({message: 'Username cannot contain spaces'});
+        }
+
+        if (!usernameRegex.test(username)) {
+            console.log('Username must be 3-20 characters long and can only contain letters and numbers');
+            return res.status(400).json({message: 'Username must be 3-20 characters long and can only contain letters and numbers'});
+        }
+
+        if (password.length < 8) {
+            console.log('Password must be at least 8 characters long');
+            return res.status(400).json({message: 'Password must be at least 8 characters long'});
+        }
+
+        // Check if password contains at least one uppercase letter, one lowercase letter, one number and one special character
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+        if (!passwordRegex.test(password)) {
+            console.log('Password must contain at least one uppercase letter, one lowercase letter, one number and one special character');
+            return res.status(400).json({message: 'Password must contain at least one uppercase letter, one lowercase letter, one number and one special character'});
+        }
 
         // Hash the password using bcryptjs before storing it
         const saltRounds = 10; // Salt rounds for hashing
@@ -38,6 +63,10 @@ router.post('/', async (req, res) => {
 
         // Save the new user to the database
         await newUser.save();
+
+        // Store a new property in the users session that is their unique id that mongodb generated for them
+        // Now the userId value lives server side 
+        req.session.userId = newUser._id; // Store the user ID in the session
 
         res.status(201).json({message: 'User created successfully'}); // Return success message
 

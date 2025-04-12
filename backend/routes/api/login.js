@@ -35,6 +35,9 @@ router.post('/', async (req, res) => {
             console.log('Password is incorrect');
             return res.status(401).json({ message: 'Invalid credentials' });
         }
+
+        // If username and password are correct, set the session user ID
+        req.session.userId = user._id; // Set the session user ID to the user's ID from the database
         
         // If username and password are correct, return success message
         console.log('Login successful');
