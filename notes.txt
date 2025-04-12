@@ -1,0 +1,53 @@
+jwt - a server authenticates a user, generates a JWT containing user information and sends it to the client. 
+the client then includes this jwt in subsequent requests to access protected resources which the server verifies to grant access
+
+Auth and jwt generation:
+- User provides credentails to the server
+- Server validates
+- successful validation leads to a jwt being created and signed using a secret key (public/private key pair)
+- server sends the jwt back to the client
+
+Client side usages:
+- client stores the jwt in local storage, session storage or a secure cookie
+- for each subsequent request to protected resources, the client includes the JWT in the authorization header
+(typically known as the bearer token)
+
+SS verifies:
+- server receives request with JWT token in auth header
+- validates jwt signature using the same secrety key ( or public key )
+- if the jwt is valid, the server extracts the user info from the jwt and uses it to determine if the user is authorized to access 
+the requested resource
+- if authorized, the server returns the requested data, otherewise, it returns an error
+
+Example: 
+- user logs in or signs uppercase
+- server creates jwt with the username, pass and role
+- server sends the jwt back to the client 
+- the client stores the jwt
+- the client sends the jwt in the auth header when making a request to a protected API endpoint
+- the server verifies the jwt and grants access 
+
+Key points:
+- store secret key on the server and never expose it to the client 
+- set a reasonable token expiration 
+
+res.send() vs res.sendFile():
+- .send(): 
+    - can handle various response types such as plain text, json and html
+    - automatically sets the appropiate content type based on the data sent
+
+    Example:
+    - res.send("hello world")
+    - res.send({message: "Success", data: {name: 'John', age: '30'}})
+
+- .sendFile():
+    - great for serving specific files to the clients such as html documents, iamges, css and other static resources
+
+    Example:
+    - res.sendFile('index.html', {root:__dirname})
+    - res.sendFile('image.jpg', {root: __dirname + '/public'})
+
+
+TODO:
+- make mobile sign in form!!!!!!!!!!!!!
+- Test functionality of sign in/sign up session ID!!!
