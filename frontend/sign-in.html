@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <link rel="stylesheet" href="styles/sign-in.css" />
 </head>
 <body>
-    <h1>Sign In!</h1>
+
+  <h1 class="mobile-signin-form">Sign in!</h1>
+
+  <div class="form-container" id="login-form">
+    <form id="login-form">
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <button type="submit" class="sign-in-btn">Sign in</button>
+    </form>
+  </div>
+
+  <script src="scripts/sign-in.js"></script>
 </body>
 </html>

@@ -1,33 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/sign-up.css">
-    <title>Sign Up</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/sign-up.css" />
+  <title>Sign Up</title>
 </head>
 <body>
-    <!-- Desktop sign up form -->
-    <div class="desktop-signup-form ">
-        <h1>Create your account!</h1>
-        <div class="form-container">
-            <form id="signup-form">
-                <div class="input-group">
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username" autocomplete="username" required>
 
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" autocomplete="new-password" required>
-                    <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required>
+  <!-- Desktop sign-up form -->
+  <div class="desktop-form">
+    <img src="./assets/badtz_homepage.png" alt="Matcha" class="desktop-image" />
+    <div class="form-container">
+      <form id="desktop-signup-form">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" autocomplete="username" required />
 
-                    <button type="submit" class="sign-up-btn">Sign up</button>
-                </div>
-            </form>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="new-password" required />
+
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" autocomplete="new-password" required />
         </div>
-
+        <button type="submit" class="sign-up-btn">Sign up</button>
+      </form>
     </div>
-<script src="scripts/sign-up.js"> </script>
-</body>
+  </div>
 
+  <!-- Mobile sign-up form -->
+  <div class="mobile-form">
+    <h1 class="signup-form">Create Account</h1>
+    <div class="form-container">
+      <form id="mobile-signup-form">
+        <div class="input-group">
+          <label for="mobile-username">Username</label>
+          <input type="text" id="mobile-username" name="username" required />
+  
+          <label for="mobile-password">Password</label>
+          <input type="password" id="mobile-password" name="password" required />
+  
+          <label for="mobile-confirm-password">Confirm Password</label>
+          <input type="password" id="mobile-confirm-password" name="confirm-password" required />
+        </div>
+        <button type="submit" class="sign-up-btn">Sign up</button>
+      </form>
+    </div>
+  </div>
+  
+  <script src="scripts/sign-up.js"></script>
+</body>
 </html>

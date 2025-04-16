@@ -44,100 +44,58 @@ const isValidCredentials = (username, password) => {
     return true;
 }
 
-// Wait for the DOM to load
-document.addEventListener("DOMContentLoaded", () => {
-
-    // Get the form element ... this is how we hook into the form
-    const form = document.getElementById("signup-form");
-
-    form.addEventListener("submit", async (event) => {
-
-        // Prevent the default form submission
+// unified handler for mobile and desktop forms
+const handleForm = (form) => {
+    form?.addEventListener("submit", async (event) =>{
         event.preventDefault();
 
-        // Get the values from the form fields
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirm-password").value;
-
+        const username = form.querySelector('input[name="username"]').value.trim();
+        const password = form.querySelector('input[name="password"]').value.trim();
+        const confirmPassword = form.querySelector('input[name="confirm-password"]').value.trim();
+        
         console.log("Username: ", username);
         console.log("Password: ", password);
         console.log("Confirm Password: ", confirmPassword);
 
-        // Validate the username and password
-        if (!isValidCredentials(username, password)) {
-            alert("Invalid username or password");
+        // validate credentials 
+        if(!isValidCredentials(username, password)){
             return;
         }
 
-        // Check if the username is empty
-        if (!username) {
-            alert("Username is required");
-            return;
-        }
-
-        // Check if the password is empty
-        if (!password) {
-            alert("Password is required");
-            return;
-        }
-
-        // Check if the confirm password is empty
-        if (!confirmPassword) {
-            alert("Confirm password is required");
-            return;
-        }
-
-        // Check if the passwords match
         if (password !== confirmPassword){
             alert("Passwords do not match");
             return;
         }
 
-        // Send the data to the server
         try {
             const res = await fetch("/api/signup", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    username,
-                    password
-                })
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({username, password}),
+                credentials: "include",
+            })
 
-            });
-            // Check if the response is ok
             const data = await res.json();
 
-            if (res.ok) {
-                alert("User created successfully");
-                // Redirect to the login page
-                window.location.href = "/homepage.html";
-            }
-            else {
-                alert(`Error: ${data.message}`);
+            if (res.ok){
+                alert("User created!");
+                window.location.href = "/homepage_protected.html";
+            } else {
+                alert(`Error: ${data.message}`)
             }
 
-        } catch(error) {
+        } catch (error){
             console.error(`Error: ${error}`);
-            alert("An error occurred while creating the user");
+            alert(error);
         }
     })
-});
+}
+    
+// attach handlers to both forms
+document.addEventListener("DOMContentLoaded", () => {
+    const desktopForm = document.getElementById("desktop-signup-form");
+    const mobileForm = document.getElementById("mobile-signup-form");
 
-// When the user submits the form, JS:
-
-// Prevents the default page reload
-
-// Gets the username/password/confirm-password
-
-// Validates that passwords match
-
-// Sends a POST request to your backend route (/api/signup)
-
-// Backend hashes password + saves user to MongoDB
-
-// If successful, frontend redirects user to login
-
-
+    handleForm(desktopForm);
+    handleForm(mobileForm);
+})

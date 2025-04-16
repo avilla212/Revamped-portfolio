@@ -28,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     username,
                     password,
                 }),
+                credentials: "include", // Include credentials (cookies) in the request
+                
             })
 
             const data = await res.json(); // Parse the JSON response
@@ -35,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (res.ok) {
                 alert('Login successful!'); // Show success message
                 // If the response is ok, redirect to the dashboard
-                window.location.href = "/homepage.html";
+                window.location.href = "/homepage_protected.html"; // Redirect to the homepage after successful login
             } else {
                 alert(data.message); // Show error message
             }
