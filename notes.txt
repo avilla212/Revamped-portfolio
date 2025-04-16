@@ -47,7 +47,17 @@ res.send() vs res.sendFile():
     - res.sendFile('index.html', {root:__dirname})
     - res.sendFile('image.jpg', {root: __dirname + '/public'})
 
+Challenging stuff and how i fixed it:
 
-TODO:
-- make mobile sign in form!!!!!!!!!!!!!
-- Test functionality of sign in/sign up session ID!!!
+Session middleware order:
+- Login wasnt rerouting to our homepage and I was very confused until I read that i needed to move my middleware 
+above all routes and static handling first because it was registered too late in teh stack
+- always register session and cookie parser middleware before any routes or static file usage 
+
+Protected route positioning:
+- Same as above, protected homepage was being overrideen by express static which made it public accessible
+- protected routes must come before express static so express checks your middleware first
+
+Session persistance on login:
+- wasnt sticking due to missing middleware or incorrect credentails in fetch()
+- when using express session i need to use the session middleware early and cookie credentials: "include"
