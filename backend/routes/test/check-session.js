@@ -1,14 +1,34 @@
-const express = require('express'); // Import express to create a new router object
-const router = express.Router(); // Create a new router object
+const express = require("express");
+const router = express.Router();
+const User = require('../../models/user');
 
-router.get('/', (req, res) => {
-    console.log(req.session.id); // Log the session ID to the console
-    console.log(req.session); // Log the session object to the console
+router.get('/', async (req, res) => {
+    console.log(`Session ID: , ${req.session.id}`);
+    console.log(`Session Data, ${req.session}`);
 
-    // This is us modifying the session object to store data
-    req.session.visited = true; // Set a session variable named "visited" to true
+    // check if user is logged in 
+    if (!req.session.userId){
+        return res.status(401).json({message: "Unauthorized"});
+    }
 
-    res.cookie("hello", "world"); // Set a cookie named "hello" with the value "world"
-    res.status(200).json({message: "Session is valid"}); // Send a JSON response indicating that the session is valid
+    try {
+        // looking up user from session
+        const user = await User.findById(req.session.userId).select('username');
+
+        if (!user) {
+            return res.status(404).json({message: "User not found"});
+        }
+
+        res.status(200).json({
+            message: "Session is valid",
+            userId: req.session.userId,
+            username: user.username,
+        })
+
+    } catch (error) {
+        console.error(`Error: ${error}`)
+        return res.status(500).json({message: "Server error"})
+    }
 })
-module.exports = router; // Export the router object to be used in other files
+
+module.exports = router;

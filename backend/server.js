@@ -48,6 +48,9 @@ app.use('/api/signup', require('./routes/api/signup'));
 // Mount test route
 app.use('/api/test', require('./routes/test/check-session'));
 
+// Mount messages route
+app.use('/api/messages', require('./routes/api/messages'))
+
 // Protecct all routes with session middleware
 app.get('/homepage_protected.html', authMiddleware, (req, res) => {
     // Now only authenticated users can access this route
