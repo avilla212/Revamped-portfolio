@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="/styles/homepage.css">
 </head>
 <body>
-    <h1>Homepage</h1>
+    <div class="container"> 
+        <div class="welcome-bubble">
+            Welcome <span id="username">User</span>!<br>
+        </div>
+
+        <div class="bubble-row">
+            <img src="/assets/badtz_homepage.png" class="desktop-image">
+        </div>
+    </div>
 </body>
+<script>
+    fetch('/api/test')
+        .then(res => res.json())
+        .then(data => {
+            if (data.username){
+                document.getElementById('username').textContent = data.username;
+            }
+        })
+        .catch(error => {
+            console.warn(`Error: ${error}`);
+            window.location.href = '/index.html';
+        })
+</script>
 </html>

@@ -1,0 +1,58 @@
+/* Reset and base styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Container holds everything */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* Welcome text styling */
+  .welcome-bubble {
+    background-color: #ffffff;
+    padding: 16px 32px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  /* Image row */
+  .bubble-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Badtz image */
+  .desktop-image {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+  }
+  
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .welcome-bubble {
+      font-size: 20px;
+      padding: 12px 20px;
+    }
+  
+    .desktop-image {
+      max-width: 220px;
+    }
+  }
+  
