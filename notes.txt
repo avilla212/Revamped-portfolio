@@ -61,3 +61,35 @@ Protected route positioning:
 Session persistance on login:
 - wasnt sticking due to missing middleware or incorrect credentails in fetch()
 - when using express session i need to use the session middleware early and cookie credentials: "include"
+
+Debugging error after error with message route 
+    - Error 401 unauthorized
+        - TC didnt have my session cookie, didnt even think about needing to be logged so i was confused at first
+        - signed in via website but then realized that browser sessions dont carry into TC, especially since HTTP is stateless
+    - Solution
+        - signed up (once) and logged in via TC post requests to the appropiate routes
+
+
+    - Error: Cannot destructure property 'content' of req.body.text
+        - tried sending { "content": "First message" } via post request and tried grabbing it using const { content } = req.body.text
+        
+        - req.body is an entire body of data that the frontend sends in a POST request
+        - it is an object so whatever the client sends in a request body will then be parsed by express and put inside req.body
+        - example: 
+            - Frontend sends post request ... { "content": "message!" }
+            - Backend req.body receives it as { "content": "message!" }
+            - req.body is the the  whole body, req.body.content is "message!"
+        - req.body PROS
+            - since the entire request body object is taken into account, you can access everything
+        - req.body CONS
+            - can be messy if the body is large or not structured properly
+        
+        - req.body.<variable> PROS
+            - can access specific fields which can be clean and direct
+            - assumes that specific field is always existing so can cause errors if missing
+
+
+    - Error: Cannot read properties of undefined (reading 'findById')
+        - wrote const { User } = ....
+        - but user model was a direct export, module.exports = User so { User } was undefined
+        - tried to destructure something that wasnt exported as an object
