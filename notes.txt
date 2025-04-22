@@ -93,3 +93,15 @@ Debugging error after error with message route
         - wrote const { User } = ....
         - but user model was a direct export, module.exports = User so { User } was undefined
         - tried to destructure something that wasnt exported as an object
+
+Setting up message sending
+    - When building api/messages route, added a get request to fetch message from oldest to newest
+        - used sid to verify user is logged  in 
+        - validated content
+
+Testing message POSTing through TC
+    - Error 401 unauthorized
+        - Realized TC doesnt carry over browser sessions
+    - Solution: 
+        - added it as a manual cookie header 
+
