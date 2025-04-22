@@ -47,4 +47,15 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.get('/', async(req, res) => {
+    try {
+        const messages = await Message.find().sort({ createdAt: 1 }) // get all messaged, sorted oldest to newest
+        return res.status(200).json(messages);
+
+    } catch (error){
+        console.error(`Error: ${error.message}`);
+        return res.status(500).json({ message: 'Server error while fetching messages' })
+    }
+})
+
 module.exports = router;

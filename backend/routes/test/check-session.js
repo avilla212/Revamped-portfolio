@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
             return res.status(404).json({message: "User not found"});
         }
 
-        res.status(200).json({
+        return res.status(200).json({
             message: "Session is valid",
             userId: req.session.userId,
             username: user.username,
