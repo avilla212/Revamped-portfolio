@@ -75,8 +75,9 @@ const setupMessageSending = () => {
 
         console.log('Message sent to server');
 
-        // clear input field
+        // re fetch and render message
         messageInput.value = "";
+        await fetchMessages();
 
       } catch (error){
         console.error(`Error sending message: ${error.message}`)

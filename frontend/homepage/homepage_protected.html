@@ -4,14 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Homepage w/ messages</title>
-  <link rel="stylesheet" href="../styles/homepage.css" />
+  
+  <!-- Modern font and styling -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
+  <link rel="stylesheet" href="../styles/homepage.css" />
 </head>
 <body>
 
   <!-- Welcome Section -->
-  <div id="welcome-container" class="container">
+  <div id="welcome-container">
     <div class="welcome-bubble">
       Welcome <span id="username">User</span>!
     </div>
@@ -31,9 +32,9 @@
       <button id="sendButton">Send</button>
     </div>
 
-    <!-- Messages Container (where messages will be rendered) -->
+    <!-- Messages will render here -->
     <div id="messagesContainer">
-      <!-- Messages will be dynamically inserted here by the script -->
+      <!-- Filled dynamically by homepage.js -->
     </div>
 
   </div>
