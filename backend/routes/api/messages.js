@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
             senderId: user._id,
             senderUsername: user.username,
             content: content.trim(),
+            createdAt: new Date() // used for TTL to work
         })
 
         await newMessage.save();
