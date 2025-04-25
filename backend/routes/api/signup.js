@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
   const { username, password } = req.body;
 
   try {
-    // ✅ Input validation
+    // Input validation
     if (!username || !password) {
       return res.status(400).json({ message: 'Username and password are required' });
     }
@@ -43,10 +43,8 @@ router.post('/', async (req, res) => {
     // ✅ Set session
     req.session.userId = newUser._id;
 
-    console.log(`✅ New user created: ${username}`);
     res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
-    console.error('Signup error:', error.message);
     res.status(500).json({ message: 'Server error' });
   }
 });

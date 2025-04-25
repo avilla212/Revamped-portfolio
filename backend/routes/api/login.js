@@ -12,9 +12,10 @@ router.post('/', async(req, res) => {
         if (!user) {
             return res.status(401).json({ message: "Invalid username or password" }); // User not found
         }
+
         const isMatch = await bcryptjs.compare(password, user.password); // Compare password with hashed password
+        
         if (!isMatch) {
-            console.log('Password does not match'); // Log password mismatch
             return res.status(401).json({ message: "Invalid username or password" }); // Password does not match
         }
 

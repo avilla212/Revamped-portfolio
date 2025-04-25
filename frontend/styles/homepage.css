@@ -15,10 +15,16 @@ body {
   text-align: center;
 }
 
+.desktop-image{
+  /* Transparent background */
+  background: none;
+}
+
 #welcome-container .desktop-image {
   width: 200px;
   cursor: pointer;
   margin-top: 1rem;
+  background: none;
 }
 
 #welcome-container .welcome-bubble {

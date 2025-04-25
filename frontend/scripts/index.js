@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 alert(data.message); // Show error message
             }
         } catch (error){
-            console.error(`Error: ${error.message}`); // Log the error message
             alert('An error occurred while logging in. Please try again.'); // Show error message
         }
 

@@ -73,14 +73,12 @@ const setupMessageSending = () => {
           throw new Error(`Failed to send ${response.status}`);
         }
 
-        console.log('Message sent to server');
 
         // re fetch and render message
         messageInput.value = "";
         await fetchMessages();
 
       } catch (error){
-        console.error(`Error sending message: ${error.message}`)
         alert('Uh Oh! Something went wrong.')
       }
     })
@@ -124,7 +122,6 @@ const fetchMessages = async () => {
     }
 
     const data = await response.json();
-    console.log(data);
     renderMessages(data); // Pass fetched messages to render function
   } catch (error) {
     console.log(`Error: ${error.message}`);

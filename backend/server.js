@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const session = require("express-session");
+const rateLimit = require('express-rate-limit')
 const authMiddleware = require("./middleware/sessionId"); // Import the session middleware
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
@@ -24,8 +25,8 @@ app.use(session({
     resave: false, // Don't save session if unmodified
     cookie: {
         maxAge: 1000 * 60 * 60 * 24, // Set cookie expiration to 1 day
-        sameSite: 'lax', // change to strict in production
-        secure: false, // change to true in production
+        sameSite: 'strict', // change to strict in production
+        secure: true, // change to true in production
     }
 }));
 
@@ -35,6 +36,16 @@ app.use((req, res, next) => {
     console.log("Session secret:", process.env.SESSION_SECRET), // Log the session secret for debugging
     next(); // Call the next middleware or route handler
 });
+
+// rate limiter
+const apiLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: 'Too many requests, try again later.'
+})
+
+// Mount the rate limiter 
+app.use('/api/', apiLimiter);
 
 // Mount login routes
 app.use('/api/login', require('./routes/api/login'));

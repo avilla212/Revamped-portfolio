@@ -53,10 +53,6 @@ const handleForm = (form) => {
         const password = form.querySelector('input[name="password"]').value.trim();
         const confirmPassword = form.querySelector('input[name="confirm-password"]').value.trim();
         
-        console.log("Username: ", username);
-        console.log("Password: ", password);
-        console.log("Confirm Password: ", confirmPassword);
-
         // validate credentials 
         if(!isValidCredentials(username, password)){
             return;
@@ -85,7 +81,6 @@ const handleForm = (form) => {
             }
 
         } catch (error){
-            console.error(`Error: ${error}`);
             alert(error);
         }
     })

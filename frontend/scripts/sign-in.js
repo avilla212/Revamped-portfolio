@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await res.json(); // Parse the JSON response
 
         if (res.ok) {
-          alert("Login successful!"); // Show success message
           // Redirect to the homepage after successful login
           window.location.href = "/homepage_protected.html";
         }
@@ -30,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
           alert(data.message); // Show error message
         }
         } catch (error) {
-            console.error(`Error: ${error.message}`); // Log the error message
             alert("An error occurred while logging in. Please try again."); // Show error message
             }      
     });
