@@ -19,7 +19,9 @@ connectDb();
 // CORS middleware setup
 const allowedOrigins = [
   "https://revamped-portfolio-ten.vercel.app",
-  "http://localhost:3000"
+  "http://localhost:3000",
+  "http://127.0.0.1:5500",
+  "http://localhost:8080"
 ];
 
 // Determine environment
