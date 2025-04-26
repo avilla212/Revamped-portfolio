@@ -79,7 +79,7 @@ app.use('/api/messages', require('./routes/api/messages'))
 // Protecct all routes with session middleware
 app.get('/homepage_protected.html', authMiddleware, (req, res) => {
     // Now only authenticated users can access this route
-    res.sendFile(path.join(__dirname, '../frontend/homepage/homepage_protected.html'));
+    res.sendFile(path.join(__dirname, 'https://revamped-portfolio-production.up.railway.app/homepage_protected.html'));
 });
 
 // Serve static files from the frontend directory
