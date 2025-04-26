@@ -13,7 +13,23 @@ mongoose.connect(process.env.MONGO_URI, {
   useUnifiedTopology: true
 })
 
+const allowedOrigins = [
+  "https://revamped-portfolio-ten.vercel.app",
+  "http://localhost:3000",
+  "http://127.0.0.1:5500",
+  "http://localhost:8080"
+];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+};
 
 // CORS middleware
 app.use(cors(corsOptions));
