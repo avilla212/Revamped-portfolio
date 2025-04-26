@@ -1,1 +1,0 @@
-const backendURL = "https://revamped-portfolio-production.up.railway.app"
