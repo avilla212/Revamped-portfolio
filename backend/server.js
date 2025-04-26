@@ -1,91 +1,107 @@
-const express = require('express');
-const cors = require('cors');
-const session = require('express-session');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const cors = require("cors");
+const app = express();
+const path = require("path");
+const session = require("express-session");
 const rateLimit = require('express-rate-limit');
-const path = require('path');
-const mongoose = require('mongoose'); 
-const authMiddleware = require('./middleware/sessionId'); 
-require('dotenv').config();
+const authMiddleware = require("./middleware/sessionId"); // Import the session middleware
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 
-const isProduction = process.env.NODE_ENV === 'production'
+// Trust proxy (important for Railway and express-rate-limit)
+app.set('trust proxy', 1);
 
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+// init mongoose
+const connectDb = require("./database/db");
+const { connect } = require("mongoose");
+const cookieParser = require("cookie-parser");
+connectDb();
 
-const allowedOrigins = [
+
+// Determine environment
+const isProduction = process.env.NODE_ENV === 'production';
+
+const allowOrigins = [
   "https://revamped-portfolio-ten.vercel.app",
-  "http://localhost:3000",
-  "http://127.0.0.1:5500",
-  "http://localhost:8080"
-];
+  "revamped-portfolio-ten.vercel.app",
+  "http://localhost:3000"
+]
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
+app.use(cors({
+  origin: allowOrigins,
   credentials: true
-};
+}))
 
-// CORS middleware
-app.use(cors(corsOptions));
+const corsOptions = isProduction
+   ? {
+       origin: function (origin, callback) {
+         if (!origin || allowedOrigins.includes(origin)) {
+           callback(null, true);
+         } else {
+           console.warn(`🚫 CORS blocked: ${origin}`);
+           callback(new Error("Not allowed by CORS"));
+         }
+       },
+       credentials: true
+     }
+   : {
+       origin: true, // Allow all during development
+       credentials: true
+     };
+ 
+ app.use(cors(corsOptions));
 
-// Body parser
-app.use(express.json());
+ // use express.json() middleware to parse JSON data in request body
+ app.use(express.json());
 
-// Cookie parser
-app.use(cookieParser("Hello World!"));
+ app.use(cookieParser('Hello World!'))
 
-// Session
-app.use(session({
+ app.use(session({
   secret: process.env.SESSION_SECRET,
-  saveUninitialized: false,
-  resave: false,
-  cookie: {
-    maxAge: 1000 * 60 * 60 * 24,
-    sameSite: isProduction ? 'none' : 'lax',
-    secure: isProduction
-  }
+   saveUninitialized: false,
+   resave: false,
+   cookie: {
+     maxAge: 1000 * 60 * 60 * 24, // 1 day
+     sameSite: isProduction ? 'strict' : 'lax',
+     secure: isProduction
+   }
 }));
 
-// Rate limiter
-app.use('/api/', rateLimit({
+app.use((req, res, next) => {
+  next();
+});
+
+const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
   max: 100,
   message: 'Too many requests, try again later.'
-}));
+})
 
-// ✅ Serve static files for frontend BEFORE anything else
-app.use('/scripts', express.static(path.join(__dirname, '../frontend/scripts')));
-app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')));
-app.use('/assets', express.static(path.join(__dirname, '../frontend/assets')));
-app.use(express.static(path.join(__dirname, '../frontend'))); // ✅ Allow Vercel-like root paths
+// Mount the rate limiter
+app.use('/api/', apiLimiter);
 
-// ✅ Mount API routes
+// Mount login, logout, signup, test, and message routes
 app.use('/api/login', require('./routes/api/login'));
 app.use('/api/logout', require('./routes/api/logout'));
 app.use('/api/signup', require('./routes/api/signup'));
+app.use('/api/messsages', require('./routes/api/messages'));
 app.use('/api/test', require('./routes/test/check-session'));
-app.use('/api/messages', require('./routes/api/messages'));
 
-// ✅ Protect homepage AFTER static serving
 app.get('/homepage_protected.html', authMiddleware, (req, res) => {
-  res.sendFile(path.join(__dirname, 'protected/homepage_protected.html'));
+  res.sendFile(path.join(__dirname, '../frontend/homepage/homepage_protected.html'));
 });
 
-// Root route
+// Serve static files from frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 app.get('/', (req, res) => {
-  res.send('Backend is running');
-});
+  res.send(`Backend is running`);
+})
 
-// Start server
 const PORT = process.env.PORT || 8080;
+
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+  console.log(`Server is running on port ${PORT}`);
+})
+
+
+
