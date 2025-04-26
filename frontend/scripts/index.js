@@ -28,7 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (res.ok) {
                 alert('Login successful!'); // Show success message
                 // If the response is ok, redirect to the dashboard
-                window.location.href = "/homepage_protected.html"; // Redirect to the homepage after successful login
+                // Redirect to the homepage after successful login
+                window.location.href = "https://revamped-portfolio-production.up.railway.app/homepage_protected.html";
             } else {
                 alert(data.message); // Show error message
             }

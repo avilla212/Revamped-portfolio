@@ -20,7 +20,7 @@ const fetchUsername = async () => {
     }
   } catch (error) {
     console.error(`Error fetching username: ${error.message}`);
-    window.location.href = '/index.html'; // Redirect to login if error
+    window.location.href = "https://revamped-portfolio-production.up.railway.app/index.html";
   }
 };
 

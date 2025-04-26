@@ -81,7 +81,8 @@ const handleForm = (form) => {
 
       if (res.ok) {
         alert("User created!");
-        window.location.href = "/homepage_protected.html";
+        window.location.href = "https://revamped-portfolio-production.up.railway.app/homepage_protected.html";
+
       } else {
         alert(`Error: ${data.message}`);
       }
