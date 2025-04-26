@@ -20,7 +20,7 @@ connectDb();
 // Determine environment
 const isProduction = process.env.NODE_ENV === 'production';
 
-const allowOrigins = [
+const allowedOrigins = [
   "https://revamped-portfolio-ten.vercel.app",
   "revamped-portfolio-ten.vercel.app",
   "http://localhost:3000"
