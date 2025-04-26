@@ -1,4 +1,4 @@
-const backendURL = "revamped-portfolio-production.up.railway.app";
+const backendURL = "https://revamped-portfolio-production.up.railway.app";
 
 // This code is executed when the DOM is fully loaded
 const isValidCredentials = (username, password) => {

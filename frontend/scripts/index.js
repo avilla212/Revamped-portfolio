@@ -1,4 +1,4 @@
-const backendURL = "revamped-portfolio-production.up.railway.app"
+const backendURL = "https://revamped-portfolio-production.up.railway.app"
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("login-form");
