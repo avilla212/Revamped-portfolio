@@ -77,7 +77,7 @@ app.use(express.static(path.join(__dirname, '../frontend')));
 
 // Server root test
 app.get('/', (req, res) => {
-    console.log('Server is running on port 3000');
+    res.send('Backend is running');
 });
 
 // Start server on port 3000
