@@ -87,7 +87,7 @@ app.use('/api/messsages', require('./routes/api/messages'));
 app.use('/api/test', require('./routes/test/check-session'));
 
 app.get('/homepage_protected.html', authMiddleware, (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/homepage/homepage_protected.html'));
+  res.sendFile(path.join(__dirname, 'protected/homepage_protected.html'));
 });
 
 // Serve static files from frontend
