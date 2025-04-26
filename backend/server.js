@@ -16,9 +16,6 @@ const { connect } = require("mongoose");
 const cookieParser = require("cookie-parser");
 connectDb();
 
-// Determine environment
-const isProduction = process.env.NODE_ENV === 'production';
-
 // CORS middleware setup
 const allowedOrigins = [
   "https://revamped-portfolio-ten.vercel.app",
@@ -50,6 +47,10 @@ app.use(express.json());
 // Use cookie-parser middleware to parse cookies in the request
 app.use(cookieParser("Hello World!"));
 
+
+// Determine environment
+const isProduction = process.env.NODE_ENV === 'production';
+
 // Register the session middleware
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -57,7 +58,7 @@ app.use(session({
   resave: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24, // 1 day
-    sameSite: isProduction ? 'strict' : 'lax',
+    sameSite: isProduction ? 'none' : 'lax',
     secure: isProduction
   }
 }));
