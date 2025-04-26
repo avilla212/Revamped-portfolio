@@ -81,7 +81,7 @@ const handleForm = (form) => {
 
       if (res.ok) {
         alert("User created!");
-        window.location.href = backendURL + 'homepage_protected.html' // Redirect to the homepage after successful signup
+        window.location.href = backendURL + '/homepage_protected.html' // Redirect to the homepage after successful signup
 
       } else {
         alert(`Error: ${data.message}`);
