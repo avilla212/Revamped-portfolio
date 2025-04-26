@@ -9,6 +9,6 @@ module.exports = (req, res, next) => {
       return next();
     }
   
-    return res.redirect('/index.html');
+    return res.redirect('https://revamped-portfolio-ten.vercel.app');
   };
   
