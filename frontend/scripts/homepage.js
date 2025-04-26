@@ -1,7 +1,10 @@
+const backendURL = "revamped-portfolio-production.up.railway.app"
+
+
 // Fetch and display the username
 const fetchUsername = async () => {
   try {
-    const response = await fetch('/api/test');
+    const response = await fetch(`${backendURL}/api/test`);
     if (!response.ok) {
       throw new Error(`Failed to fetch username: ${response.status}`);
     }
@@ -60,7 +63,7 @@ const setupMessageSending = () => {
 
       try {
         // send the message to the backend
-        const response = await fetch('/api/messages', {
+        const response = await fetch(`${backendURL}/api/messages`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json' // tell server we are sending JSON 
@@ -116,7 +119,7 @@ const renderMessages = (messages) => {
 // fetch messages to display on homepage
 const fetchMessages = async () => {
   try {
-    const response = await fetch('/api/messages');
+    const response = await fetch(`${backendURL}/api/messages`);
     if (!response.ok) {
       throw new Error("Failed to fetch messages");
     }

@@ -1,13 +1,4 @@
-// Frontend handles 
-// 1. User input
-// 2. Sending data via fetch()
-// 3. Redirecting to another page
-
-// Backend:
-// 1. Validate user input
-// 2. Check mongodb for user
-// 3. Verification of password
-// 4. Return success or failure
+const backendURL = "revamped-portfolio-production.up.railway.app"
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("login-form");
@@ -19,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const password = document.getElementById("password").value;
 
         try {
-            const res = await fetch("/api/login", {
+            const res = await fetch(`${backendURL}/api/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

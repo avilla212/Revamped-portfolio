@@ -1,4 +1,4 @@
-// scripts/sign-in.js
+const backendURL = "revamped-portfolio-production.up.railway.app"
 
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.getElementById("login-form");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const password = document.getElementById("password").value;
   
       try {
-        const res = await fetch("/api/login", {
+        const res = await fetch(`${backendURL}/api/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
