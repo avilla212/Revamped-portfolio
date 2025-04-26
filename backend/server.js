@@ -4,7 +4,16 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const rateLimit = require('express-rate-limit');
 const path = require('path');
+const mongoose = require('mongoose'); 
+const authMiddleware = require('./middleware/sessionId'); 
 require('dotenv').config();
+
+mongoose.connect(process.env.MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+
+
 
 // CORS middleware
 app.use(cors(corsOptions));
