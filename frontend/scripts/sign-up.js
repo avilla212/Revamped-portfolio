@@ -70,7 +70,7 @@ const handleForm = (form) => {
     }
 
     try {
-      const res = await fetch(`${backendURL}/api/test`, {
+      const res = await fetch(`${backendURL}/api/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
