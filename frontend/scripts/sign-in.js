@@ -1,36 +1,38 @@
-const backendURL = "https://revamped-portfolio-production.up.railway.app"
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("login-form");
   
-    form?.addEventListener("submit", async (e) => {
-      e.preventDefault(); // Prevent default form submission
+  const backendURL = "https://revamped-portfolio-production.up.railway.app"
+  const form = document.getElementById("login-form");
   
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Prevent default form submission
   
-      try {
-        const res = await fetch(`${backendURL}/api/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, password }),
-          credentials: "include", // Include credentials (cookies) in the request
-        });
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
   
-        const data = await res.json(); // Parse the JSON response
+    try {
+      const res = await fetch(`${backendURL}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, password }),
+        credentials: "include", // Include credentials (cookies) in the request
+      });
+  
+      const data = await res.json(); // Parse the JSON response
 
-        if (res.ok) {
-          // Redirect to the homepage after successful login
-          window.location.href = "https://revamped-portfolio-production.up.railway.app/homepage_protected.html";
-        }
-        else {
-          alert(data.message); // Show error message
-        }
-        } catch (error) {
-            alert("An error occurred while logging in. Please try again."); // Show error message
-            }      
-    });
+      if (res.ok) {
+        // Redirect to the homepage after successful login
+        window.location.href = "https://revamped-portfolio-production.up.railway.app/homepage_protected.html";
+      }
+      else {
+        alert(data.message); // Show error message
+      }
+      } catch (error) {
+          alert("An error occurred while logging in. Please try again."); // Show error message
+          }      
   });
+});
   
