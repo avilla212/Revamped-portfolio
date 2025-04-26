@@ -18,8 +18,8 @@ router.get('/', async (req, res) => {
 
         return res.status(200).json({
             message: "Session is valid",
-            // userId: req.session.userId,
-            // username: user.username,
+            userId: req.session.userId,
+            username: user.username,
         })
 
     } catch (error) {
