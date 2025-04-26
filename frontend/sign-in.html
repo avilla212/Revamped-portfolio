@@ -10,7 +10,9 @@
 
   <h1 class="mobile-signin-form">Sign in!</h1>
 
-  <div class="form-container" id="login-form">
+  <!-- ❌ Removed id="login-form" from this div, kept only class -->
+  <div class="form-container">
+    <!-- ✅ Only form has id="login-form" now -->
     <form id="login-form">
       <div class="input-group">
         <label for="username">Username</label>
@@ -23,6 +25,7 @@
       <button type="submit" class="sign-in-btn">Sign in</button>
     </form>
   </div>
+
   <script src="scripts/sign-in.js"></script>
 </body>
 </html>
