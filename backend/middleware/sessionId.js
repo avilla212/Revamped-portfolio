@@ -4,7 +4,6 @@
 // This way, we can access the sessionId in any route without having to pass it in the request body or headers
 
 module.exports = (req, res, next) => {
-    console.log('Session data:', req.session);
   
     if (req.session && req.session.userId) {
       return next();

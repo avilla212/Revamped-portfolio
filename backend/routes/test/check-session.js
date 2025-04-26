@@ -3,9 +3,6 @@ const router = express.Router();
 const User = require('../../models/user');
 
 router.get('/', async (req, res) => {
-    console.log(`Session ID: , ${req.session.id}`);
-    console.log(`Session Data, ${req.session}`);
-
     // check if user is logged in 
     if (!req.session.userId){
         return res.status(401).json({message: "Unauthorized"});
@@ -21,12 +18,11 @@ router.get('/', async (req, res) => {
 
         return res.status(200).json({
             message: "Session is valid",
-            userId: req.session.userId,
-            username: user.username,
+            // userId: req.session.userId,
+            // username: user.username,
         })
 
     } catch (error) {
-        console.error(`Error: ${error}`)
         return res.status(500).json({message: "Server error"})
     }
 })

@@ -18,6 +18,9 @@ app.use(express.json());
 // Use cookie-parser middleware to parse cookiese in the request 
 app.use(cookieParser("Hello World!"));
 
+// Determine enviornment
+const isProduction = process.env.NODE_ENV === 'production';
+
 // Register the session middleware
 app.use(session({
     secret: process.env.SESSION_SECRET, // Secret key for signing the session ID cookie
@@ -25,15 +28,15 @@ app.use(session({
     resave: false, // Don't save session if unmodified
     cookie: {
         maxAge: 1000 * 60 * 60 * 24, // Set cookie expiration to 1 day
-        sameSite: 'strict', // change to strict in production
-        secure: true, // change to true in production
+        sameSite: isProduction ? 'strict' : 'lax', // strict if production, lax otherwise 
+        secure: isProduction, // true if production, false if local
     }
 }));
 
 // Log session data for debugging
 app.use((req, res, next) => {
-    console.log('Session data:', req.session); // Log session data
-    console.log("Session secret:", process.env.SESSION_SECRET), // Log the session secret for debugging
+    // console.log('Session data:', req.session); // Log session data
+    // console.log("Session secret:", process.env.SESSION_SECRET), // Log the session secret for debugging
     next(); // Call the next middleware or route handler
 });
 

@@ -23,10 +23,8 @@ router.post('/', async(req, res) => {
         // if valid session, store user ID in session
         req.session.userId = user._id; // Store user ID in session
 
-        console.log(`User ${user.username} logged in successfully`); // Log successful login
         return res.status(200).json({ message: "Login successful" }); // Send success response
     } catch (error){
-        console.log(`Server error: ${error.message}`); // Log server error
         return res.status(500).json({ message: "Server error" }); // Send server error response
     }
 })
