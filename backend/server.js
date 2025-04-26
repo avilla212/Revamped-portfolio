@@ -22,6 +22,9 @@ const allowedOrigins = [
   "http://localhost:3000"
 ];
 
+// Determine environment
+const isProduction = process.env.NODE_ENV === 'production';
+
 const corsOptions = isProduction
   ? {
       origin: function (origin, callback) {
@@ -46,10 +49,6 @@ app.use(express.json());
 
 // Use cookie-parser middleware to parse cookies in the request
 app.use(cookieParser("Hello World!"));
-
-
-// Determine environment
-const isProduction = process.env.NODE_ENV === 'production';
 
 // Register the session middleware
 app.use(session({
