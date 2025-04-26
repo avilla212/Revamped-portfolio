@@ -8,6 +8,8 @@ const mongoose = require('mongoose');
 const authMiddleware = require('./middleware/sessionId'); 
 require('dotenv').config();
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
