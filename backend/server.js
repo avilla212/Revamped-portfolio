@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const path = require("path");
 const session = require("express-session");
@@ -12,6 +13,16 @@ const { connect } = require("mongoose");
 const cookieParser = require("cookie-parser");
 connectDb();
 
+// cors middleware 
+const allowedOrigins = [
+    "https://revamped-portfolio-ten.vercel.app",
+    "revamped-portfolio-ten.vercel.app"
+]
+
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}))
 // use express.json() middleware to parse JSON data in request body
 app.use(express.json());
 
