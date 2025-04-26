@@ -77,8 +77,14 @@ const apiLimiter = rateLimit({
   message: 'Too many requests, try again later.'
 });
 
+
 // Mount the rate limiter
 app.use('/api/', apiLimiter);
+
+app.use('/scripts', express.static(path.join(__dirname, '../frontend/scripts')))
+app.use('/styles', express.static(path.join(__dirname, '../frontend/styles')))
+app.use('/assets', express.static(path.join(__dirname, '../frontend/assets')))
+
 
 // Mount login, logout, signup, test, and message routes
 app.use('/api/login', require('./routes/api/login'));
