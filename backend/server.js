@@ -78,7 +78,7 @@ app.use('/api/', apiLimiter);
 app.use('/api/login', require('./routes/api/login'));
 app.use('/api/logout', require('./routes/api/logout'));
 app.use('/api/signup', require('./routes/api/signup'));
-app.use('/api/messsages', require('./routes/api/messages'));
+app.use('/api/messages', require('./routes/api/messages'));
 app.use('/api/test', require('./routes/test/check-session'));
 
 app.get('/homepage_protected.html', authMiddleware, (req, res) => {
