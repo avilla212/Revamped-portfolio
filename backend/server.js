@@ -26,22 +26,10 @@ const allowedOrigins = [
   "http://localhost:3000"
 ]
 
-const corsOptions = isProduction
-   ? {
-       origin: function (origin, callback) {
-         if (!origin || allowedOrigins.includes(origin)) {
-           callback(null, true);
-         } else {
-           console.warn(`🚫 CORS blocked: ${origin}`);
-           callback(new Error("Not allowed by CORS"));
-         }
-       },
-       credentials: true
-     }
-   : {
-       origin: true, // Allow all during development
-       credentials: true
-     };
+const corsOptions = {
+  origin: true,        // ✅ Allow all frontends temporarily
+  credentials: true    // ✅ Always allow cookies
+};
  
  app.use(cors(corsOptions));
 
