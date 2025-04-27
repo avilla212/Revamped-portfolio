@@ -1,11 +1,15 @@
 // Wrap everything in a DOMContentLoaded listener
 document.addEventListener('DOMContentLoaded', () => {
   const backendURL = "https://revamped-portfolio-production.up.railway.app";
-
+  const frontendURL = "https://revamped-portfolio-ten.vercel.app";
   // Fetch and display the username
   const fetchUsername = async () => {
     try {
-      const response = await fetch(`${backendURL}/api/test`);
+      const response = await fetch(`${backendURL}/api/test`, {
+        method: 'GET',
+        credentials: 'include', // Include cookies in the request
+
+      });
       if (!response.ok) {
         throw new Error(`Failed to fetch username: ${response.status}`);
       }
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       console.error(`Error fetching username: ${error.message}`);
-      window.location.href = "https://revamped-portfolio-production.up.railway.app/index.html";
+      window.location.href = frontendURL + '/sign-in.html';
     }
   };
 
@@ -99,7 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fetchMessages = async () => {
     try {
-      const response = await fetch(`${backendURL}/api/messages`);
+      const response = await fetch(`${backendURL}/api/messages`, {
+        method: 'GET', 
+        credentials: 'include', // Include cookies in the request
+      });
       if (!response.ok) {
         throw new Error("Failed to fetch messages");
       }
