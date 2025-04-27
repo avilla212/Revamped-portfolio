@@ -26,11 +26,6 @@ const allowedOrigins = [
   "http://localhost:3000"
 ]
 
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true
-}))
-
 const corsOptions = isProduction
    ? {
        origin: function (origin, callback) {
@@ -53,7 +48,7 @@ const corsOptions = isProduction
  // use express.json() middleware to parse JSON data in request body
  app.use(express.json());
 
- app.use(cookieParser('Hello World!'))
+ app.use(cookieParser())
 
  app.use(session({
   secret: process.env.SESSION_SECRET,
