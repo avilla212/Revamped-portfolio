@@ -58,8 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
           const response = await fetch(`${backendURL}/api/messages`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: messageText })
+            body: JSON.stringify({ content: messageText }),
+            credentials: 'include', // Include cookies in the request
           });
+
+
 
           if (!response.ok) {
             throw new Error(`Failed to send ${response.status}`);
