@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Message = require('../../models/messages');
 const User = require('../../models/user');  // import the user model
-const { route } = require('./login');
 
 router.post('/', async (req, res) => {
     try{

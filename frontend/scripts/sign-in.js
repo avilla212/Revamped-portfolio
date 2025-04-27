@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   
 
   const backendURL = "https://revamped-portfolio-production.up.railway.app"
+  const frontendURL = "https://revamped-portfolio-ten.vercel.app";
+
   const form = document.getElementById("login-form");
   
   form?.addEventListener("submit", async (e) => {
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (res.ok) {
         // Redirect to the homepage after successful login
-        window.location.href = "/homepage_protected.html";
+        window.location.href = `${frontendURL}/homepage_protected.html`;
       }
       else {
         alert(data.message); // Show error message
