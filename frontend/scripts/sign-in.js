@@ -2,6 +2,7 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   
+
   const backendURL = "https://revamped-portfolio-production.up.railway.app"
   const form = document.getElementById("login-form");
   
@@ -25,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (res.ok) {
         // Redirect to the homepage after successful login
-        window.location.href = "https://revamped-portfolio-production.up.railway.app/homepage_protected.html";
+        window.location.href = "/homepage_protected.html";
       }
       else {
         alert(data.message); // Show error message
