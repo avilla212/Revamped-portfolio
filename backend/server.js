@@ -61,7 +61,7 @@ const corsOptions = isProduction
    resave: false,
    cookie: {
      maxAge: 1000 * 60 * 60 * 24, // 1 day
-     sameSite: isProduction ? 'strict' : 'lax',
+     sameSite: isProduction ? 'none' : 'lax',
      secure: isProduction
    }
 }));
