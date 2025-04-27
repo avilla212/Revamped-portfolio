@@ -1,4 +1,3 @@
-const backendURL = "https://revamped-portfolio-production.up.railway.app";
 
 // This code is executed when the DOM is fully loaded
 const isValidCredentials = (username, password) => {
@@ -50,6 +49,8 @@ const isValidCredentials = (username, password) => {
 
 // unified handler for mobile and desktop forms
 const handleForm = (form) => {
+  const backendURL = "https://revamped-portfolio-production.up.railway.app";
+
   form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
